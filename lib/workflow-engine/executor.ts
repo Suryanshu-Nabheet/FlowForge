@@ -33,22 +33,26 @@ const nodeExecutors: Record<string, NodeExecutor> = {
       body?: unknown
     }
 
-    const response = await fetch(url, {
-      method,
+    // Use internal proxy to avoid CORS
+    const response = await fetch("/api/proxy/request", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...headers,
       },
-      body: body ? JSON.stringify(body) : undefined,
+      body: JSON.stringify({
+        method,
+        url,
+        headers,
+        body,
+      }),
     })
 
-    const data = await response.json()
-    return {
-      status: response.status,
-      statusText: response.statusText,
-      headers: Object.fromEntries(response.headers.entries()),
-      data,
+    if (!response.ok) {
+        throw new Error(`HTTP Request failed: ${response.statusText}`);
     }
+
+    const result = await response.json()
+    return result
   },
 
   delay: async (node, input) => {
@@ -138,13 +142,31 @@ const nodeExecutors: Record<string, NodeExecutor> = {
       return getValue(input, path.trim())
     })
 
-    // This would call the AI SDK in production
-    return {
-      model,
-      prompt: interpolatedPrompt,
-      response: `AI response for: ${interpolatedPrompt}`,
-      usage: { promptTokens: 100, completionTokens: 50, totalTokens: 150 },
+    const response = await fetch("/api/openrouter/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            model,
+            prompt: interpolatedPrompt,
+            parameters: {
+                temperature,
+                messages: systemPrompt ? [{role: "system", content: systemPrompt}] : []
+            }
+        })
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        throw new Error(`AI Request failed: ${err.error || response.statusText}`);
     }
+
+    const result = await response.json();
+    return {
+        model,
+        prompt: interpolatedPrompt,
+        response: result.choices?.[0]?.message?.content || "No response",
+        raw: result
+    };
   },
 
   "send-email": async (node) => {
