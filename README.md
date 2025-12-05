@@ -1,4 +1,4 @@
-# FlowForge ⚡️
+# FlowForge
 
 FlowForge is a powerful, production-ready workflow automation platform similar to n8n. It allows you to build complex automation workflows visually using a drag-and-drop node editor.
 
@@ -24,8 +24,8 @@ FlowForge is a powerful, production-ready workflow automation platform similar t
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/flowforge.git
-   cd flowforge
+   git clone https://github.com/Suryanshu-Nabheet/FlowForge.git
+   cd FlowForge
    ```
 
 2. Install dependencies:
