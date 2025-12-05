@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Shield, Cpu, Gauge, Globe, Workflow } from "lucide-react";
+import { Zap, Cpu, Gauge, Globe, Workflow } from "lucide-react";
 
 const features = [
   {
