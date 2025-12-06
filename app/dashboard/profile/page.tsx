@@ -1,12 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useSettingsStore } from "@/lib/store/settings-store";
+import { toast } from "sonner";
 
 export default function ProfilePage() {
+  const { userProfile, updateProfile } = useSettingsStore();
+  const [name, setName] = useState(userProfile.name);
+  const [email, setEmail] = useState(userProfile.email);
+
+  const handleSave = () => {
+    updateProfile({ name, email });
+    toast.success("Profile updated successfully");
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -24,20 +36,22 @@ export default function ProfilePage() {
           <CardContent className="space-y-4">
             <div className="flex items-center gap-4">
               <Avatar className="h-16 w-16">
-                <AvatarImage src="/diverse-user-avatars.png" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarImage src={userProfile.avatar} />
+                <AvatarFallback>
+                  {name.substring(0, 2).toUpperCase()}
+                </AvatarFallback>
               </Avatar>
               <Button variant="outline">Change Avatar</Button>
             </div>
             <div className="grid gap-2">
               <Label>Full Name</Label>
-              <Input defaultValue="John Doe" />
+              <Input value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="grid gap-2">
               <Label>Email</Label>
-              <Input defaultValue="john@example.com" />
+              <Input value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <Button>Save Profile</Button>
+            <Button onClick={handleSave}>Save Profile</Button>
           </CardContent>
         </Card>
       </div>

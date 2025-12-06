@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,8 +12,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useSettingsStore } from "@/lib/store/settings-store";
+import { toast } from "sonner";
 
 export default function SettingsPage() {
+  const { workspaceName, emailNotifications, updateSettings } =
+    useSettingsStore();
+  const [wsName, setWsName] = useState(workspaceName);
+  const [emailNotif, setEmailNotif] = useState(emailNotifications);
+
+  const handleSave = () => {
+    updateSettings({ workspaceName: wsName, emailNotifications: emailNotif });
+    toast.success("Settings saved successfully");
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -31,7 +44,11 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             <div className="grid gap-2">
               <Label htmlFor="ws-name">Workspace Name</Label>
-              <Input id="ws-name" defaultValue="My Workspace" />
+              <Input
+                id="ws-name"
+                value={wsName}
+                onChange={(e) => setWsName(e.target.value)}
+              />
             </div>
           </CardContent>
         </Card>
@@ -49,12 +66,12 @@ export default function SettingsPage() {
                   Receive emails about failed workflows.
                 </p>
               </div>
-              <Switch defaultChecked />
+              <Switch checked={emailNotif} onCheckedChange={setEmailNotif} />
             </div>
           </CardContent>
         </Card>
         <div className="flex justify-end">
-          <Button>Save Changes</Button>
+          <Button onClick={handleSave}>Save Changes</Button>
         </div>
       </div>
     </div>

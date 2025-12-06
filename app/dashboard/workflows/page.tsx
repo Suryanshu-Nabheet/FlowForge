@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { WorkflowList } from "@/components/dashboard/workflow-list";
 
 export default function WorkflowsPage() {
@@ -11,7 +12,9 @@ export default function WorkflowsPage() {
           Create, manage, and monitor your automation workflows.
         </p>
       </div>
-      <WorkflowList />
+      <Suspense fallback={<div>Loading workflows...</div>}>
+        <WorkflowList />
+      </Suspense>
     </div>
   );
 }

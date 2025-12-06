@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useWorkflowStore } from "@/lib/store/workflow-store";
 import { Button } from "@/components/ui/button";
 import {
@@ -47,9 +48,19 @@ import { formatDistanceToNow } from "date-fns";
 
 export function WorkflowList() {
   const { workflows, createWorkflow, deleteWorkflow } = useWorkflowStore();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [newWorkflowName, setNewWorkflowName] = useState("");
   const [newWorkflowDesc, setNewWorkflowDesc] = useState("");
+
+  useEffect(() => {
+    if (searchParams.get("create") === "true") {
+      setIsCreateDialogOpen(true);
+      // Clean up URL
+      router.replace("/dashboard/workflows");
+    }
+  }, [searchParams, router]);
 
   const handleCreateWorkflow = () => {
     if (!newWorkflowName.trim()) return;
