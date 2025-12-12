@@ -1,8 +1,12 @@
 import { Navbar } from "@/components/landing/navbar";
 import { HeroSection } from "@/components/landing/hero-section";
+import { LogoCloud } from "@/components/logo-cloud";
 import { FeaturesSection } from "@/components/landing/features-section";
+import { TestimonialsSection } from "@/components/landing/testimonials-section";
+import { PricingSection } from "@/components/pricing-section";
+import { FaqsSection } from "@/components/faqs-section";
 import { CTASection } from "@/components/landing/cta-section";
-import { Footer } from "@/components/landing/footer";
+import { Footer } from "@/components/footer";
 
 export default function LandingPage() {
   return (
@@ -10,7 +14,11 @@ export default function LandingPage() {
       <Navbar />
       <main className="flex-1">
         <HeroSection />
+        <LogoCloud />
         <FeaturesSection />
+        <TestimonialsSection />
+        <PricingSection />
+        <FaqsSection />
         <CTASection />
       </main>
       <Footer />

@@ -4,87 +4,38 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light Mode Variables */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  
-  --primary: oklch(0.5 0.2 250); /* Blue for Light Mode */
-  --primary-foreground: oklch(0.985 0 0);
-  
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.5 0.2 250); /* Blue text for secondary */
-  
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  
-  --accent: oklch(0.96 0.02 250); /* Very light blue tint */
-  --accent-foreground: oklch(0.5 0.2 250);
-  
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.98 0 0);
-  
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.5 0.2 250);
-  
-  --radius: 0.625rem;
-  
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.5 0.2 250);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.96 0.02 250);
-  --sidebar-accent-foreground: oklch(0.5 0.2 250);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.87 0 0);
-
-  /* FlowForge custom tokens (Light) */
-  --neon-blue: oklch(0.5 0.2 250);
-  --neon-blue-glow: oklch(0.6 0.2 250);
-  --node-bg: oklch(1 0 0);
-  --node-border: oklch(0.8 0 0);
-  --canvas-bg: oklch(0.98 0 0);
-  --canvas-grid: oklch(0.9 0 0);
-  --success: oklch(0.65 0.2 145);
-  --warning: oklch(0.7 0.18 85);
-  --info: oklch(0.65 0.2 250);
-
-  /* Chart Colors */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-}
-
-.dark {
-  /* Same as root for dark mode forcing, or refine slightly */
-  --background: oklch(0.05 0.02 240);
+  /* Enforced Dark Mode (Black & Blue) */
+  --background: oklch(0.05 0.02 240); /* Very Dark Blue/Black */
   --foreground: oklch(0.98 0 0);
-  --card: oklch(0.1 0.03 240);
+
+  --card: oklch(0.1 0.03 240); /* Slightly lighter dark blue */
   --card-foreground: oklch(0.98 0 0);
+
   --popover: oklch(0.1 0.03 240);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.6 0.2 250);
+
+  --primary: oklch(0.6 0.2 250); /* Neon Blue */
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.2 0.05 240);
+
+  --secondary: oklch(0.2 0.05 240); /* Muted Dark Blue */
   --secondary-foreground: oklch(0.98 0 0);
+
   --muted: oklch(0.2 0.05 240);
   --muted-foreground: oklch(0.7 0.05 240);
+
   --accent: oklch(0.25 0.05 240);
   --accent-foreground: oklch(0.98 0 0);
+
   --destructive: oklch(0.5 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
+
   --border: oklch(0.2 0.05 240);
   --input: oklch(0.2 0.05 240);
   --ring: oklch(0.6 0.2 250);
-  --sidebar: oklch(0.04 0.02 240);
+
+  --radius: 0.625rem;
+
+  --sidebar: oklch(0.04 0.02 240); /* Darker Sidebar */
   --sidebar-foreground: oklch(0.9 0.02 240);
   --sidebar-primary: oklch(0.6 0.2 250);
   --sidebar-primary-foreground: oklch(0.98 0 0);
@@ -92,6 +43,24 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.15 0.05 240);
   --sidebar-ring: oklch(0.6 0.2 250);
+
+  /* FlowForge custom tokens */
+  --neon-blue: oklch(0.65 0.2 250);
+  --neon-blue-glow: oklch(0.7 0.25 250);
+  --node-bg: oklch(0.1 0.03 240);
+  --node-border: oklch(0.3 0.1 240);
+  --canvas-bg: oklch(0.05 0.02 240);
+  --canvas-grid: oklch(0.15 0.05 240);
+  --success: oklch(0.65 0.2 145);
+  --warning: oklch(0.7 0.18 85);
+  --info: oklch(0.65 0.2 250);
+
+  /* Chart Colors */
+  --chart-1: oklch(0.6 0.2 250);
+  --chart-2: oklch(0.5 0.2 200);
+  --chart-3: oklch(0.4 0.2 180);
+  --chart-4: oklch(0.7 0.15 280);
+  --chart-5: oklch(0.8 0.1 300);
 }
 
 @theme inline {

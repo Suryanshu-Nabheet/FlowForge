@@ -1,42 +1,56 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ShinyButton } from "@/components/ui/shiny-button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon, PlusIcon, FileText } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-primary/5 -z-10" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -z-10" />
+    <section className="container mx-auto py-24 px-4 md:px-6">
+      <div className="relative mx-auto flex w-full max-w-3xl flex-col justify-between gap-y-4 border-y px-4 py-8 dark:bg-[radial-gradient(35%_80%_at_25%_0%,--theme(--color-foreground/.08),transparent)]">
+        <PlusIcon
+          className="absolute top-[-12.5px] left-[-11.5px] z-1 size-6 text-muted-foreground/50"
+          strokeWidth={1}
+        />
+        <PlusIcon
+          className="absolute top-[-12.5px] right-[-11.5px] z-1 size-6 text-muted-foreground/50"
+          strokeWidth={1}
+        />
+        <PlusIcon
+          className="absolute bottom-[-12.5px] left-[-11.5px] z-1 size-6 text-muted-foreground/50"
+          strokeWidth={1}
+        />
+        <PlusIcon
+          className="absolute right-[-11.5px] bottom-[-12.5px] z-1 size-6 text-muted-foreground/50"
+          strokeWidth={1}
+        />
 
-      <div className="container mx-auto px-4 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            Ready to revolutionize your workflow?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Join thousands of developers building the future of automation with
-            FlowForge. Start for free, scale when you need to.
-          </p>
+        <div className="-inset-y-6 pointer-events-none absolute left-0 w-px border-l border-border/50" />
+        <div className="-inset-y-6 pointer-events-none absolute right-0 w-px border-r border-border/50" />
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/dashboard">
-              <ShinyButton className="h-16 px-10 text-xl shadow-2xl shadow-primary/30">
-                Start Building Now
-                <ArrowRight className="ml-2 h-6 w-6" />
-              </ShinyButton>
-            </Link>
-          </div>
-        </motion.div>
+        <div className="-z-10 absolute top-0 left-1/2 h-full border-l border-dashed border-border/50" />
+
+        <h2 className="text-center font-bold text-3xl md:text-4xl tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
+          Ready to Automate Your Workflow?
+        </h2>
+        <p className="text-balance text-center font-medium text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
+          Join thousands of developers building complex automations with
+          FlowForge. Start building for free completely client-side.
+        </p>
+
+        <div className="flex items-center justify-center gap-4 pt-4">
+          <Link href="/docs">
+            <Button variant="outline" className="h-11 px-6">
+              <FileText className="mr-2 h-4 w-4" />
+              Documentation
+            </Button>
+          </Link>
+          <Link href="/dashboard">
+            <Button className="h-11 px-6 shadow-lg shadow-primary/20">
+              Get Started <ArrowRightIcon className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );

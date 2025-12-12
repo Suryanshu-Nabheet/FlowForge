@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Zap, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { Logo } from "@/components/logo";
 
 const navItems = [
   { name: "Features", href: "#features" },
@@ -45,13 +46,8 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-lg shadow-primary/20 transition-transform group-hover:scale-110">
-                <Zap className="h-5 w-5 fill-current" />
-              </div>
-              <span className="text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
-                FlowForge
-              </span>
+            <Link href="/" className="group">
+              <Logo className="h-8 transition-transform group-hover:scale-105" />
             </Link>
           </div>
 

@@ -296,7 +296,10 @@ export function WorkflowCanvas({ workflowId }: WorkflowCanvasProps) {
       )}
 
       {/* Canvas */}
-      <div className="relative flex-1" ref={reactFlowWrapper}>
+      <div
+        className="bg-background text-foreground relative flex-1"
+        ref={reactFlowWrapper}
+      >
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -310,14 +313,14 @@ export function WorkflowCanvas({ workflowId }: WorkflowCanvasProps) {
           nodeTypes={nodeTypes}
           fitView
           snapToGrid
-          snapGrid={[15, 15]}
-          className="bg-canvas-bg"
+          snapGrid={[20, 20]} // Match grid size
+          className="bg-black" // Force black bg for the dots to sit on
         >
           <Background
             variant={BackgroundVariant.Dots}
             gap={20}
             size={1}
-            color="var(--canvas-grid)"
+            color="#404040" // Dark Gray dots
           />
           <Controls
             className="!bg-card !border-border"
@@ -410,9 +413,12 @@ export function WorkflowCanvas({ workflowId }: WorkflowCanvasProps) {
           </Panel>
         </ReactFlow>
 
+        {/* Vignette Overlay */}
+        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-transparent [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+
         {/* Execution Log Panel */}
         {isExecutionLogOpen && (
-          <div className="absolute bottom-0 left-0 right-0 h-64 border-t border-border bg-card">
+          <div className="absolute bottom-0 left-0 right-0 z-50 h-64 border-t border-border bg-card">
             <ExecutionLog />
           </div>
         )}
